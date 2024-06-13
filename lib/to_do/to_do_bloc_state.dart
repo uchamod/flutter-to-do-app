@@ -5,16 +5,16 @@ enum ToDoStatus { INITIAL, LOARDING, SUCCSUSS, ERROR }
 
 //state bloc
 class ToDoBlocState extends Equatable {
-  final List<ToDo> todoList;
-  final ToDoStatus status;
-  const ToDoBlocState(
+   List<ToDo> todoList;
+  ToDoStatus? status;
+   ToDoBlocState(
       {this.status = ToDoStatus.INITIAL, this.todoList = const []});
 
   @override
   List<Object> get props => [];
   //copy the state
   ToDoBlocState copyWith({ToDoStatus? status, List<ToDo>? todoList}) {
-    return ToDoBlocState(status: status!, todoList: todoList!);
+    return ToDoBlocState(status: status, todoList: todoList!);
   }
 
 //to json
@@ -31,10 +31,10 @@ class ToDoBlocState extends Equatable {
       return ToDoBlocState(
           todoList: listOfTodos,
           status: ToDoStatus.values.firstWhere(
-              (status) => status.name.toString() == json["status"]));
+              (status) => status.name.toString() == json["status"],),);
     } catch (err) {
       print(err.toString());
-      return const ToDoBlocState();
+      return ToDoBlocState();
     }
   }
 }

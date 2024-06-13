@@ -30,5 +30,6 @@ class UpdateToDo extends ToDoBlocEvent {
   final int index;
 
   const UpdateToDo({required this.index});
-
+  @override
+  List<Object> get props => [index];
 }
